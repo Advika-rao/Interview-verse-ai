@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #080f27;
+  --panel: #101d40;
+  --panel-light: #172c5a;
+  --text: #f7f8ff;
+  --muted: #b8c5e6;
+  --blue: #55b9ff;
+  --purple: #a66bff;
+  --accent-gradient: linear-gradient(90deg, #397fff, #995cff);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  background: radial-gradient(ellipse at 80% 15%, #25236b 0, transparent 32%),
+              radial-gradient(ellipse at 10% 90%, #1a3970 0, transparent 35%),
+              var(--bg);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Custom visual elements matching uploaded frontend */
+.robot-card {
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #172c5a, #15133e);
+  border: 1px solid #394b86;
+  box-shadow: 0 20px 70px #00000080;
+  overflow: hidden;
+}
+
+.robot-card::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  width: 230px;
+  height: 230px;
+  background: #5645d8;
+  opacity: 0.24;
+  top: -100px;
+  right: -50px;
+}
+
+.robot-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  width: 180px;
+  height: 180px;
+  background: #219bff;
+  opacity: 0.15;
+  bottom: -100px;
+  left: -40px;
+}
+
+.speech-bubble {
+  border: 1px solid #8c79ff;
+  border-radius: 18px;
+  padding: 10px 14px;
+  color: #e5dcff;
+  font-weight: 650;
+  background: #171c49;
+  box-shadow: 0 4px 15px rgba(140, 121, 255, 0.25);
+}
+
+.role-card-ds {
+  background: linear-gradient(120deg, #142951, #17183f);
+  border: 2px solid #398fe0;
+}
+
+.role-card-mle {
+  background: linear-gradient(120deg, #30205f, #19183f);
+  border: 2px solid #9560ed;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #397fff, #995cff);
+  box-shadow: 0 8px 25px rgba(104, 75, 206, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-gradient:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(104, 75, 206, 0.5);
+}
+
+.btn-gradient:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080f27;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3a6b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #395094;
+}

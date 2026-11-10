@@ -1,0 +1,543 @@
+COMPLETE APPLICATION AUDIT AND REPAIR – INTERVIEW EVALUATION, VOICE RECOGNITION, COMMUNICATION ANALYSIS, DATASET PRIVACY AND CODING SANDBOX
+I want you to inspect, repair and test my EXISTING Interview with AI application.
+This is an existing application repair task. Do not create a new project, rebuild the website, redesign the UI or remove existing working features.
+Preserve the existing frontend, backend, database, authentication, interview workflow, datasets, question banks, coding interface, camera functionality, voice functionality, reports and navigation.
+I have identified several problems during actual interview testing. Fix all of them together.
+Do not just modify displayed text, scores or percentages. Inspect and repair the actual underlying implementation.
+PART A: FIX SPOKEN COMMUNICATION EVALUATION
+Communication score is stuck at 79%
+Currently, the spoken Communication score remains around 79% instead of changing according to how the candidate actually speaks.
+This is incorrect.
+The application must evaluate each candidate's actual spoken communication separately for each answer.
+The score must be dynamically calculated from measurable speech and language characteristics. It must not be hardcoded, defaulted or generated as an arbitrary Gemini percentage.
+Analyse actual spoken communication
+When a candidate answers through the microphone, analyse the recorded audio and verified transcript.
+Evaluate the following characteristics:
+A. Speaking pace
+Calculate words per minute using actual speaking duration and transcribed words.
+Identify excessively fast speech.
+Identify unusually slow speech.
+Assess whether the speaking pace is appropriate and understandable.
+Do not automatically reward fast speaking.
+B. Pauses and hesitation
+Detect pauses between spoken segments.
+Measure the duration of pauses where audio data permits.
+Distinguish normal short pauses from unusually long pauses.
+Identify repeated or excessive hesitation.
+Do not penalize every natural pause. Pauses can be useful when a candidate is thinking.
+C. Filler words
+Identify filler words such as "um", "uh", "like", "you know", and repeated unnecessary expressions.
+Calculate the number and frequency of filler words.
+Distinguish natural conversational language from excessive filler usage.
+D. Speech disfluencies
+Identify observable repetitions, repeated syllables, false starts and abandoned phrases where reliably detectable.
+Distinguish ordinary self-correction from repeated speech disfluencies.
+Do not diagnose a speech disorder or label a candidate as having a stutter.
+Assess only observable speech patterns.
+E. Clarity and intelligibility
+Evaluate whether the candidate's speech is understandable.
+Identify unclear or incomplete phrases.
+Use the audio and verified transcript together.
+Do not confuse technical answer correctness with speech clarity.
+F. Organization and fluency
+Evaluate whether the candidate explains ideas in a logical sequence.
+Identify unnecessary repetition.
+Assess whether the explanation is coherent and understandable.
+Evaluate whether the candidate stays relevant to the question.
+G. Delivery and confidence indicators
+Assess observable delivery characteristics such as excessive hesitation, interrupted speech, consistency of pace and ability to complete explanations.
+Present these as observable delivery indicators, not as a definitive measurement of internal confidence.
+Do not infer personality, honesty, intelligence or psychological confidence from voice or facial expressions.
+Dynamic communication scoring
+Create a transparent communication scoring rubric with defined criteria and weights.
+Calculate the communication score from actual measured characteristics.
+The score must change according to the candidate's actual speech performance.
+For example:
+A candidate who speaks clearly, at an appropriate pace and with well-organized explanations should receive an appropriate high score.
+A candidate who speaks too quickly, repeatedly hesitates and uses excessive filler words should receive a lower score where supported by actual measurements.
+A candidate who communicates clearly but gives an incorrect technical answer can still receive a good communication score.
+A candidate who gives a technically correct answer but communicates it poorly should receive a lower communication score.
+Do not keep the score fixed at 79%.
+Do not assign arbitrary percentages.
+Do not generate communication scores when there is insufficient audio or transcript data.
+If a measurement cannot be obtained, mark it unavailable instead of inventing a value.
+Communication report
+For each spoken answer, display:
+Spoken communication score.
+Speaking duration.
+Speaking pace in words per minute.
+Number of detected filler words.
+Number of measurable long pauses.
+Pause duration, where available.
+Observable speech disfluencies, where reliably detected.
+Clarity assessment.
+Organization and fluency assessment.
+Specific improvement suggestions.
+Show the actual measurements used to calculate the score.
+Do not reuse previous answers' communication scores.
+Do not use default values.
+PART B: FIX TECHNICAL DEEP-DIVE EVALUATION
+Evaluate the entire question, not just its first part
+My Technical Deep-Dive evaluation is currently giving 100% completion and 100% problem-solving scores even when I answer only the first part of a multi-part question.
+This must be fixed.
+The evaluator must understand the complete question and identify every requirement before evaluating the candidate's response.
+For example:
+Question: "Explain what a Random Forest is, including its advantages and disadvantages."
+This question has three required components:
+Explain what Random Forest is.
+Explain its advantages.
+Explain its disadvantages.
+If the candidate explains only what Random Forest is, the application must not mark the complete question as 100% answered.
+It must identify that the advantages and disadvantages are missing.
+Break every multi-part question into evaluation criteria
+For each technical question:
+Identify all explicit subquestions.
+Identify all required concepts.
+Identify expected explanations.
+Identify any required examples, comparisons or calculations.
+Assign marks or weights to each component.
+Evaluate each component independently.
+Calculate the final score from the actual components answered.
+Do not evaluate only the first sentence or first part of the question.
+Do not assume that mentioning the topic means the candidate has answered the entire question.
+Technical answer evaluation categories
+Classify every response as:
+FULLY CORRECT
+PARTIALLY CORRECT
+INCORRECT
+INCOMPLETE
+IRRELEVANT
+UNANSWERED
+UNCLEAR TRANSCRIPTION
+Use the following scoring principles:
+Fully correct:
+All required components are correctly explained.
+Partially correct:
+Some required components are correct, but others are missing or incorrect.
+Incorrect:
+The response contains incorrect explanations and does not demonstrate the required knowledge.
+Incomplete:
+The response addresses only some parts of the question.
+Irrelevant:
+The response does not answer the actual question.
+Unanswered:
+No meaningful answer was provided.
+Unclear transcription:
+The system could not reliably identify what the candidate said. Request clarification rather than penalizing the candidate for a transcription failure.
+Example of expected technical evaluation
+Question: Explain Random Forest, its advantages and disadvantages.
+Expected components:
+Definition and working: 40 marks.
+Advantages: 30 marks.
+Disadvantages: 30 marks.
+Candidate response:
+"Random Forest is an ensemble learning method that combines multiple decision trees to make predictions."
+Expected evaluation:
+Definition and working: Award marks based on the accuracy and completeness of the explanation.
+Advantages: 0 marks because they were not explained.
+Disadvantages: 0 marks because they were not explained.
+The final score must reflect only the demonstrated knowledge. It must not automatically become 100%.
+Use question-specific rubrics. The example weights above must not be applied blindly to every question.
+Semantic evaluation
+Use Gemini to understand the meaning of the complete candidate response.
+Accept synonyms and technically equivalent terminology.
+Accept alternative explanations when technically valid.
+Do not require exact reference-answer wording.
+Do not use simple keyword matching as the primary evaluation method.
+Identify genuinely missing concepts.
+Explain exactly which part of the question was not answered.
+Award partial marks only for concepts actually demonstrated.
+Do not let communication scores increase technical correctness scores.
+PART C: FIX HR AND BEHAVIORAL EVALUATION
+The HR and Behavioral round is not evaluating responses correctly.
+Currently, even irrelevant, extremely short or meaningless answers sometimes receive 100% correctness.
+Fix the actual HR evaluation logic.
+Evaluate the actual response against the question
+For every HR question:
+Understand what the question is asking.
+Identify the expected information.
+Evaluate whether the candidate actually addresses the question.
+Check relevance, completeness and meaningful content.
+Identify missing information.
+Identify irrelevant or unsupported statements.
+Generate feedback based on the actual response.
+Do not award full marks merely because the candidate submitted a response.
+Do not reward long answers simply because they are long.
+Do not give 100% for one or two words unless the question genuinely requires a one- or two-word answer.
+Behavioral questions
+For relevant behavioral questions, evaluate the STAR framework where appropriate:
+Situation.
+Task.
+Action.
+Result.
+Evaluate whether these components are meaningfully explained.
+Do not require the candidate to literally say the words "STAR method".
+Do not apply the STAR framework to every HR question. Use it only when appropriate.
+HR scoring
+Use a question-specific scoring rubric.
+Evaluate:
+Relevance.
+Completeness.
+Specificity.
+Clarity.
+Logical structure.
+Supporting examples where appropriate.
+Evidence of the requested experience or reasoning.
+A vague or irrelevant answer must not receive a high score.
+An answer that addresses only part of the question must receive proportionate marks.
+An empty answer or "I don't know" must receive zero correctness marks.
+Do not invent experiences or personal facts for the candidate.
+Keep communication quality separate from the content evaluation.
+PART D: FIX VOICE DETECTION AND SPEECH-TO-TEXT
+My application's voice detection does not accurately recognize what I say.
+Sometimes I speak one answer and the application types something different.
+This makes the subsequent AI evaluation unreliable.
+Fix the actual microphone recording and speech-to-text pipeline.
+Accurate speech recognition
+Inspect:
+Microphone permission handling.
+Audio recording.
+Audio capture quality.
+Speech-to-text configuration.
+Language and locale settings.
+Transcription processing.
+Transcript storage.
+Backend submission.
+Connection between transcript and current interview question.
+Requirements:
+Capture the candidate's actual voice.
+Use an appropriate speech recognition model and language configuration.
+Preserve the complete spoken response.
+Avoid truncating the transcript.
+Handle pauses without prematurely ending the recording.
+Handle normal speaking speed variations.
+Avoid substituting previous answers or question text.
+Associate each transcript with the correct candidate, session and question.
+Handle fast speech and unclear speech
+If the candidate speaks too quickly and transcription quality decreases:
+Attempt reliable transcription using available audio.
+Do not silently guess missing words.
+Identify uncertain sections.
+Ask the candidate to repeat or confirm the unclear portion.
+Do not mark an unclear transcription as an incorrect answer.
+If the candidate pauses briefly and continues speaking, do not prematurely submit the answer.
+Allow the candidate to review the captured transcript before final evaluation.
+Separate recognition from evaluation
+Speech recognition and answer correctness are two different operations.
+First determine what the candidate actually said.
+Then evaluate the recognized answer.
+Never penalize a candidate because the speech recognition system incorrectly transcribed their answer.
+If the transcript is uncertain, request clarification.
+PART E: FIX CODING QUESTIONS AND SANDBOX
+I previously identified a serious coding problem.
+Some coding questions show the completed implementation directly inside the candidate's Python editor.
+For example, the ML Engineer question asks the candidate to implement Scaled Dot-Product Attention, but the editor already contains:
+Completed softmax_row() implementation.
+Attention score calculation.
+Scaling calculation.
+Softmax calculation.
+Attention weights multiplied by V.
+Completed output and return statement.
+The candidate can click Run and Evaluate Tests without independently solving the problem.
+This is unacceptable.
+Separate starter code and reference solutions
+Inspect every coding question in both job roles.
+For each question, maintain separate fields for:
+Problem statement.
+Candidate starter code.
+Hidden reference solution.
+Test cases.
+Expected outputs.
+Scoring rubric.
+Never place a complete reference solution in the candidate's editor.
+Keep necessary imports, function signatures and basic boilerplate where appropriate.
+For the Scaled Dot-Product Attention question, the candidate should receive an incomplete template such as:
+import math
+def scaled_dot_product_attention(Q, K, V):
+TODO: Calculate attention scores.
+TODO: Scale the scores.
+TODO: Apply softmax.
+TODO: Calculate the final attention output.
+pass
+Do not expose the completed algorithm.
+Protect reference solutions
+Store reference solutions separately from candidate starter code.
+Keep reference solutions accessible only to the trusted evaluation backend.
+Do not send reference solutions to the candidate's browser.
+Do not expose them through public API responses or frontend JavaScript.
+Do not execute the reference solution and display its result as the candidate's result.
+Never substitute reference code for submitted candidate code.
+Execute the actual candidate submission
+When the candidate clicks Run or Evaluate:
+Capture the exact current editor contents.
+Create a unique submission identifier.
+Send the exact code to the secure execution environment.
+Execute it using the selected language and runtime.
+Run the question-specific test cases against that code.
+Compare actual outputs with expected outputs.
+Record real execution results.
+Calculate marks using actual test results.
+Do not use hardcoded passing results, placeholder assertions or previous execution results.
+Correct sandbox statuses
+Display:
+PASS: Actual candidate code executed and passed the test.
+FAIL: Actual code executed but produced an incorrect result.
+ERROR: Compilation or runtime error.
+NOT RUN: Code was not executed.
+NOT IMPLEMENTED: The candidate has not implemented the required solution.
+EXECUTION UNAVAILABLE: The secure execution environment could not execute the code.
+Show:
+Test input.
+Expected output.
+Actual output.
+Execution status.
+Passed test count.
+Failed test count.
+Errors.
+Execution time where measurable.
+A successful test must mean that the exact candidate submission produced the expected output.
+Preserve both coding rounds
+For Data Scientist:
+Preserve the existing coding question bank and implementation.
+Fix starter-code and execution bugs without unnecessarily rebuilding it.
+For ML Engineer:
+Use the ML Engineer coding questions extracted from the uploaded dataset.
+Connect them to the existing coding interface.
+Do not overwrite Data Scientist questions.
+Mandatory coding tests
+Test:
+Correct solution.
+Incorrect solution.
+Empty submission.
+Unchanged starter code.
+Syntax error.
+Runtime error.
+Partially correct implementation.
+Failed edge case.
+Modified code with a new submission.
+Correct solution after modification.
+Also test the Scaled Dot-Product Attention question shown in my earlier screenshots.
+Do not report a successful solution unless the actual candidate code passes the real test cases.
+PART F: DATASET VISIBILITY AND ACCESS CONTROL
+My application currently has a Datasets section visible in the user-facing website.
+I want to prevent ordinary candidates from viewing the internal datasets, dataset filenames, uploaded source files or answer banks.
+However, I do not want to delete the datasets.
+Implement appropriate access control.
+Requirements:
+Preserve all uploaded datasets and question banks.
+Remove the Datasets section from the candidate-facing navigation and interface.
+Keep dataset management available in an administrator-only area if the existing application supports administrator access.
+Restrict dataset file access and answer keys to authorized backend operations.
+Do not expose hidden reference answers, coding solutions or internal dataset files through public frontend APIs.
+Candidates should only receive the interview questions, options, instructions and permitted question-related information.
+Do not remove or damage dataset integration.
+Do not delete any uploaded CSV or ZIP files.
+Do not break the existing question retrieval system.
+If the application does not have administrator authentication, do not invent insecure client-side restrictions. Report the required administrator access implementation.
+PART G: OVERALL SCORING AND FINAL REPORT
+All scores must be based on actual validated evaluation results.
+Keep the following dimensions separate:
+Answer correctness.
+Technical knowledge.
+Problem-solving ability, where genuinely assessed.
+Spoken communication.
+Written communication, when applicable.
+Coding performance.
+HR and behavioral answer quality.
+Do not display all dimensions for every question automatically.
+Do not allow communication scores to increase correctness marks.
+Do not allow a long answer to receive marks without relevant content.
+Do not assign high scores to unanswered or irrelevant answers.
+Calculate the overall interview score using explicitly defined weights and valid assessed dimensions.
+If a dimension was not assessed, mark it unavailable rather than inventing a percentage.
+The final report must include:
+Question-wise scores.
+Round-wise scores.
+Correct answers and missing concepts.
+Communication measurements and improvement suggestions.
+Coding test results.
+Strengths.
+Weaknesses.
+Specific recommendations for improvement.
+PART H: MANDATORY END-TO-END TESTING
+Test the actual application, not an isolated demonstration.
+Spoken communication tests
+Test:
+Clear speech at a normal pace.
+Very fast speech.
+Very slow speech.
+Natural short pauses.
+Long pauses.
+Repeated filler words.
+Repeated words and false starts.
+A clear and well-organized answer.
+A poorly organized answer.
+"I don't know."
+Empty audio.
+Unclear transcription.
+Typed response.
+Verify that the communication score changes according to actual measurable speech characteristics and does not remain fixed at 79%.
+Technical Deep-Dive tests
+Question: Explain Random Forest, including its advantages and disadvantages.
+Test:
+Complete and correct answer.
+Definition only.
+Advantages only.
+Disadvantages only.
+Definition and advantages, but no disadvantages.
+Partially correct answer.
+Incorrect answer.
+Irrelevant answer.
+"I don't know."
+Empty response.
+Verify that each missing component reduces the appropriate score and that incomplete answers never receive automatic 100% completion.
+HR and Behavioral tests
+Test:
+Detailed relevant answer.
+One-word answer.
+Two-word answer.
+Irrelevant answer.
+Incomplete behavioral answer.
+Complete STAR-style answer.
+Answer with different wording but equivalent meaning.
+"I don't know."
+Empty response.
+Verify that the evaluation is based on actual relevance and completeness.
+Voice recognition tests
+Test:
+Normal speech.
+Fast speech.
+Slow speech.
+Pauses followed by continued speech.
+Repeated words.
+No speech.
+Unclear speech.
+Speech with technical terminology.
+Compare the captured transcript with the actual spoken response.
+Coding sandbox tests
+Test:
+Correct code.
+Incorrect code.
+Empty code.
+Unchanged starter template.
+Syntax error.
+Runtime error.
+Partial solution.
+Modified submission.
+Reference solution isolation.
+Verify that only actual candidate code is executed and evaluated.
+Dataset access tests
+Test:
+Candidate account cannot access internal datasets.
+Candidate account cannot retrieve hidden answer keys.
+Candidate account cannot retrieve reference coding solutions.
+Authorized administrator can access dataset management where implemented.
+Interview questions still load correctly.
+PART I: ROOT CAUSE ANALYSIS AND FINAL IMPLEMENTATION REPORT
+Before making changes, inspect the actual project and identify the root cause of each problem.
+After implementation, provide a report containing:
+Root cause of the communication score being stuck at 79%.
+Speech measurements actually implemented.
+Root cause of incomplete technical answers receiving 100%.
+How multi-part question scoring was corrected.
+Root cause of incorrect HR evaluation.
+How HR semantic evaluation was corrected.
+Root cause of inaccurate voice transcription.
+How voice recognition was improved.
+Root cause of coding solutions appearing in the candidate editor.
+How starter code and reference solutions were separated.
+How actual candidate code is executed and tested.
+How dataset visibility and access control were changed.
+Actual source files and backend functions modified.
+Actual tests executed and their results.
+Remaining API keys, services, permissions or configuration requirements.
+Any feature that remains incomplete or could not be tested.
+Clearly distinguish:
+Implemented.
+Tested successfully.
+Tested unsuccessfully.
+Not tested.
+Blocked by missing configuration or external services.
+Do not invent test results or claim successful completion without evidence.
+FINAL MANDATORY INSTRUCTION
+Fix all the problems described in Parts A through I in the EXISTING application.
+Do not create a separate demo.
+Do not merely modify displayed scores.
+Do not use fixed communication percentages.
+Do not give 100% for incomplete technical or HR answers.
+Do not expose internal datasets or reference answers to candidates.
+Do not show completed coding solutions in the candidate editor.
+Do not report successful coding tests without executing the actual candidate submission.
+Preserve the existing website, design, frontend, backend, datasets and working functionality.
+Inspect the actual source code, repair the underlying implementation, integrate all changes into the existing application, execute the regression tests and report honestly what has and has not been completed.FIX AI INTERVIEWER AVATAR – AUTOMATIC QUESTION VOICE AND REPLAY CONTROL
+I want you to fix the voice playback behaviour of the existing AI interviewer avatar in my Interview with AI application.
+Do not redesign the website, change the avatar, modify the interview questions or remove any existing functionality. Only fix the voice playback behaviour.
+Automatically Read Each New Question Once
+Whenever a new interview question appears:
+The AI interviewer avatar must automatically read the complete question aloud exactly once.
+The voice playback should start after the question has loaded.
+Read the entire question, including all its instructions and subquestions.
+Do not shorten, summarize or skip any part of the question.
+Do not repeat the question automatically.
+Replay Voice Button
+Keep the existing Replay Voice button.
+When the candidate clicks Replay Voice, the avatar must read the current question aloud exactly once again.
+Each click should trigger one complete playback.
+Do not automatically replay after playback finishes.
+If the button is clicked while the avatar is already speaking, stop the current playback and restart the current question from the beginning.
+Do not allow overlapping audio.
+Keep the Avatar Silent Otherwise
+After the initial question playback finishes, the avatar must remain completely silent.
+The avatar must NOT:
+Repeat the question automatically.
+Speak continuously.
+Read the question again when the candidate starts answering.
+Repeat the question when the candidate pauses.
+Speak automatically when evaluation scores are generated.
+Read feedback or results aloud automatically.
+Repeat the question because the frontend re-renders.
+Speak again when unrelated interface elements change.
+The avatar should speak only in these two situations:
+Once automatically when a new question appears.
+Once when the candidate explicitly clicks Replay Voice.
+Correct Behaviour During Interview Navigation
+When the candidate moves to the next question:
+Stop any remaining audio from the previous question.
+Load the new question.
+Read the new question aloud exactly once.
+Reset the playback state for the new question.
+Do not allow previous-question audio to continue playing after navigation.
+If the candidate revisits a previously answered question, do not automatically replay it unless the application treats it as a newly loaded question. The Replay Voice button must remain available.
+Technical Fixes
+Inspect the existing text-to-speech implementation and avatar audio controls.
+Implement:
+One-time automatic playback for each question ID.
+A playback state that prevents duplicate automatic playback.
+Proper cancellation of previous audio.
+Prevention of overlapping audio.
+Prevention of repeated playback caused by React component re-renders or state updates, if applicable.
+Proper cleanup when leaving the interview.
+Independent control of automatic playback and manual replay.
+Compatibility with microphone recording and speech-to-text.
+Ensure the avatar does not start speaking while the candidate is recording an answer.
+Do not introduce unnecessary timers or repeated polling.
+Mandatory Testing
+Test these exact scenarios:
+A new question appears → Avatar reads it once.
+The initial playback finishes → Avatar remains silent.
+Candidate waits for 30 seconds → No automatic repetition.
+Candidate clicks Replay Voice once → Question plays once.
+Candidate clicks Replay Voice again → One additional playback, without overlap.
+Candidate starts speaking → Avatar remains silent.
+Candidate submits an answer → Avatar remains silent.
+Evaluation results appear → Avatar remains silent.
+Candidate moves to the next question → Previous audio stops and the new question plays once.
+Frontend re-renders → No duplicate playback.
+Candidate revisits a previous question → No unexpected automatic repetition.
+Candidate leaves the interview → All active playback stops.
+Final Requirements
+Preserve the existing avatar design, interview interface, questions, navigation and Replay Voice button.
+Fix the actual text-to-speech and playback logic rather than merely changing the interface.
+Report which source files and functions were modified and provide the results of the playback tests.
+Do not claim the fix is complete unless the actual application has been tested.
+FINAL MANDATORY RULE: Every new interview question must be read aloud exactly once automatically. After that, the AI interviewer avatar must stay completely silent until the candidate explicitly clicks Replay Voice.

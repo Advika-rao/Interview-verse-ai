@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Candidate user profile",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "email", "createdAt"]
+    },
+    "InterviewSession": {
+      "title": "InterviewSession",
+      "description": "Candidate mock interview session record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "enum": ["Data Scientist", "ML Engineer"], "maxLength": 64 },
+        "experienceLevel": { "type": "string", "enum": ["Fresher", "0–2 years", "2–5 years", "5+ years"], "maxLength": 64 },
+        "status": { "type": "string", "enum": ["setup", "in_progress", "completed", "paused", "abandoned"], "maxLength": 32 },
+        "currentRound": { "type": "number" },
+        "startedAt": { "type": "string", "maxLength": 64 },
+        "completedAt": { "type": "string", "maxLength": 64 },
+        "overallScore": { "type": "number" }
+      },
+      "required": ["id", "userId", "role", "experienceLevel", "status", "currentRound", "startedAt"]
+    },
+    "QuestionItem": {
+      "title": "QuestionItem",
+      "description": "Question bank item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "maxLength": 64 },
+        "round": { "type": "number" },
+        "topic": { "type": "string", "maxLength": 128 },
+        "difficulty": { "type": "string", "maxLength": 32 },
+        "experienceLevel": { "type": "string", "maxLength": 64 },
+        "question": { "type": "string", "maxLength": 4096 },
+        "source": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "role", "round", "topic", "question", "source"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Candidate user profiles"
+    },
+    "/interviews/{interviewId}": {
+      "schema": { "$ref": "#/entities/InterviewSession" },
+      "description": "Candidate interview sessions and results"
+    },
+    "/questions/{questionId}": {
+      "schema": { "$ref": "#/entities/QuestionItem" },
+      "description": "Interview question dataset items"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Remix Remix Remix Remix Interview with AI - Mock Interview \u0026 Candidate Assessment",
+  "description": "AI-powered mock interview and candidate assessment platform for Data Scientists and ML Engineers with animated interviewer, voice Q\u0026A, coding sandbox, and detailed reports.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

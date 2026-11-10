@@ -1,0 +1,354 @@
+role,round,subject,question
+Data Scientist,Technical,Deep Learning,What are autoencoders? Explain the different layers of autoencoders and mention three practical usages of them?
+Data Scientist,Technical,Deep Learning,What is an activation function and discuss the use of an activation function? Explain three different types of activation functions?
+Data Scientist,Technical,Deep Learning,"You are using a deep neural network for a prediction task. After training your model, you notice that it is strongly overfitting the training set and that the performance on the test isn’t good. What can you do to reduce overfitting?"
+Data Scientist,Technical,Deep Learning,Why should we use Batch Normalization?
+Data Scientist,Technical,Deep Learning,How to know whether your model is suffering from the problem of Exploding Gradients?
+Data Scientist,Technical,Deep Learning,Can you name and explain a few hyperparameters used for training a neural network?
+Data Scientist,Technical,Deep Learning,Can you explain the parameter sharing concept in deep learning?
+Data Scientist,Technical,Deep Learning,Describe the architecture of a typical Convolutional Neural Network (CNN)?
+Data Scientist,Technical,Deep Learning,What is the Vanishing Gradient Problem in Artificial Neural Networks and How to fix it?
+Data Scientist,Technical,Deep Learning,"When it comes to training an artificial neural network, what could be the reason why the loss doesn't decrease in a few epochs?"
+Data Scientist,Technical,Deep Learning,Why Sigmoid or Tanh is not preferred to be used as the activation function in the hidden layer of the neural network?
+Data Scientist,Technical,Deep Learning,Discuss in what context it is recommended to use transfer learning and when it is not.
+Data Scientist,Technical,Deep Learning,Discuss the vanishing gradient in RNN and How they can be solved.
+Data Scientist,Technical,Deep Learning,What are the main gates in LSTM and what are their tasks?
+Data Scientist,Technical,Deep Learning,Is it a good idea to use CNN to classify 1D signals?
+Data Scientist,Technical,Deep Learning,How does L1/L2 regularization affect a neural network?
+Data Scientist,Technical,Deep Learning,"What might happen if you set the momentum hyperparameter too close to 1 (e.g., 0.9999) when using an SGD optimizer?"
+Data Scientist,Technical,Deep Learning,What are the hyperparameters that can be optimized for the batch normalization layer?
+Data Scientist,Technical,Deep Learning,What is the effect of dropout on the training and prediction speed of your deep learning model?
+Data Scientist,Technical,Deep Learning,What is the advantage of deep learning over traditional machine learning?
+Data Scientist,Technical,Deep Learning,What is a depthwise Separable layer and what are its advantages?
+Data Scientist,Technical,Deep Learning,"What is a transformer architecture, and why is it widely used in natural language processing tasks?]()
+* [Q24: Explain the key components of a transformer model.]()
+* [Q25: What is self-attention, and how does it work in transformers?]()
+* [Q26: What are the advantages of transformers over traditional sequence-to-sequence models?]()
+* [Q27: How does the attention mechanism help transformers capture long-range dependencies in sequences?]()
+* [Q28: What are the limitations of transformers, and what are some potential solutions?]()
+* [Q29: How are transformers trained, and what is the role of pre-training and fine-tuning?]()
+* [Q30: What is BERT (Bidirectional Encoder Representations from Transformers), and how does it improve language understanding tasks?]()
+* [Q31: Describe the process of generating text using a transformer-based language model.]()
+* [Q32: What are some challenges or ethical considerations associated with large language models?]()
+* [Q33: Explain the concept of transfer learning and how it can be applied to transformers.]()
+* [Q34: How can transformers be used for tasks other than natural language processing, such as computer vision?]()
+
+## Computer Vision ##
+
+* [Q35: What is computer vision, and why is it important?]()
+* [Q36: Explain the concept of image segmentation and its applications.]()
+* [Q37: What is object detection, and how does it differ from image classification?]()
+* [Q38: Describe the steps involved in building an image recognition system.]()
+* [Q39: What are the challenges in implementing real-time object tracking?]()
+* [Q40: Can you explain the concept of feature extraction in computer vision?]()
+* [Q41: What is optical character recognition (OCR), and what are its main applications?]()
+* [Q42: How does a convolutional neural network (CNN) differ from a traditional neural network in the context of computer vision?]()
+* [Q43: What is the purpose of data augmentation in computer vision, and what techniques can be used?]()
+* [Q44: Discuss some popular deep learning frameworks or libraries used for computer vision tasks.]()
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Questions & Answers ##
+
+### Q1: What are autoencoders? Explain the different layers of autoencoders and mention three practical usages of them? ###
+
+Answer:
+
+Autoencoders are one of the deep learning types used for unsupervised learning. There are key layers of autoencoders, which are the input layer, encoder, bottleneck hidden layer, decoder, and output.
+
+The three layers of the autoencoder are:-
+1) Encoder - Compresses the input data to an encoded representation which is typically much smaller than the input data.
+2) Latent Space Representation/ Bottleneck/ Code - Compact summary of the input containing the most important features
+3) Decoder - Decompresses the knowledge representation and reconstructs the data back from its encoded form.
+Then a loss function is used at the top to compare the input and output images.
+NOTE- It's a requirement that the dimensionality of the input and output be the same. Everything in the middle can be played with.
+
+Autoencoders have a wide variety of usage in the real world. The following are some of the popular ones:
+
+1. Transformers and Big Bird (Autoencoders is one of these components in both algorithms): Text Summarizer, Text Generator
+2. Image compression
+3. Nonlinear version of PCA
+
+
+### Q2: What is an activation function and discuss the use of an activation function? Explain three different types of activation functions? ###
+
+Answer:
+
+In mathematical terms, the activation function serves as a gate between the current neuron input and its output, going to the next level. Basically, it decides whether neurons should be activated or not.
+It is used to introduce non-linearity into a model.
+
+Activation functions are added to introduce non-linearity to the network, it doesn't matter how many layers or how many neurons your net has, the output will be linear combinations of the input in the absence of activation functions. In other words, activation functions are what make a linear regression model different from a neural network. We need non-linearity, to capture more complex features and model more complex variations that simple linear models can not capture.
+
+There are a lot of activation functions:
+
+* Sigmoid function: f(x) = 1/(1+exp(-x))
+
+The output value of it is between 0 and 1, we can use it for classification. It has some problems like the gradient vanishing on the extremes, also it is computationally expensive since it uses exp.
+
+* Relu: f(x) = max(0,x)
+
+it returns 0 if the input is negative and the value of the input if the input is positive. It solves the problem of vanishing gradient for the positive side, however, the problem is still on the negative side. It is fast because we use a linear function in it.
+
+* Leaky ReLU:
+
+F(x)= ax, x<0
+F(x)= x, x>=0
+
+It solves the problem of vanishing gradient on both sides by returning a value “a” on the negative side and it does the same thing as ReLU for the positive side.
+
+* Softmax: it is usually used at the last layer for a classification problem because it returns a set of probabilities, where the sum of them is 1. Moreover, it is compatible with cross-entropy loss, which is usually the loss function for classification problems.
+
+
+### Q3: You are using a deep neural network for a prediction task. After training your model, you notice that it is strongly overfitting the training set and that the performance on the test isn’t good. What can you do to reduce overfitting? ###
+
+To reduce overfitting in a deep neural network changes can be made in three places/stages: The input data to the network, the network architecture, and the training process:
+
+1. The input data to the network:
+
+* Check if all the features are available and reliable
+* Check if the training sample distribution is the same as the validation and test set distribution. Because if there is a difference in validation set distribution then it is hard for the model to predict as these complex patterns are unknown to the model.
+* Check for train / valid data contamination (or leakage)
+* The dataset size is enough, if not try data augmentation to increase the data size
+* The dataset is balanced
+
+2. Network architecture:
+* Overfitting could be due to model complexity. Question each component:
+  * can fully connect layers be replaced with convolutional + pooling layers?
+  * what is the justification for the number of layers and number of neurons chosen? Given how hard it is to tune these, can a pre-trained model be used?
+  * Add regularization - lasso (l1), ridge (l2), elastic net (both)
+* Add dropouts
+* Add batch normalization
+
+3. The training process:
+* Improvements in validation losses should decide when to stop training. Use callbacks for early stopping when there are no significant changes in the validation loss and restore_best_weights.
+
+### Q4: Why should we use Batch Normalization? ###
+
+Batch normalization is a technique for training very deep neural networks that standardizes the inputs to a layer for each mini-batch.
+
+Usually, a dataset is fed into the network in the form of batches where the distribution of the data differs for every batch size. By doing this, there might be chances of vanishing gradient or exploding gradient when it tries to backpropagate. In order to combat these issues, we can use BN (with irreducible error) layer mostly on the inputs to the layer before the activation function in the previous layer and after fully connected layers.
+
+
+Batch Normalisation has the following effects on the Neural Network:
+
+1. Robust Training of the deeper layers of the network.
+2. Better covariate-shift proof NN Architecture.
+3. Has a slight regularisation effect.
+4. Centred and Controlled values of Activation.
+5. Tries to Prevent exploding/vanishing gradient.
+6. Faster Training/Convergence to the minimum loss function
+
+![Alt_text"
+Data Scientist,Technical,Machine Learning,Mention three ways to make your model robust to outliers?
+Data Scientist,Technical,Machine Learning,Describe the motivation behind random forests and mention two reasons why they are better than individual decision trees?
+Data Scientist,Technical,Machine Learning,What are the differences and similarities between gradient boosting and random forest? and what are the advantages and disadvantages of each when compared to each other?
+Data Scientist,Technical,Machine Learning,What are L1 and L2 regularization? What are the differences between the two?
+Data Scientist,Technical,Machine Learning,What are the Bias and Variance in a Machine Learning Model and explain the bias-variance trade-off?
+Data Scientist,Technical,Machine Learning,Mention three ways to handle missing or corrupted data in a dataset?
+Data Scientist,Technical,Machine Learning,Explain briefly the logistic regression model and state an example of when you have used it recently?
+Data Scientist,Technical,Machine Learning,"Explain briefly batch gradient descent, stochastic gradient descent, and mini-batch gradient descent. and what are the pros and cons for each of them?"
+Data Scientist,Technical,Machine Learning,Explain what is information gain and entropy in the context of decision trees?
+Data Scientist,Technical,Machine Learning,Explain the linear regression model and discuss its assumption?
+Data Scientist,Technical,Machine Learning,Explain briefly the K-Means clustering and how can we find the best value of K?
+Data Scientist,Technical,Machine Learning,"Define Precision, recall, and F1 and discuss the trade-off between them?"
+Data Scientist,Technical,Machine Learning,What are the differences between a model that minimizes squared error and the one that minimizes the absolute error? and in which cases each error metric would be more appropriate?
+Data Scientist,Technical,Machine Learning,Define and compare parametric and non-parametric models and give two examples for each of them?
+Data Scientist,Technical,Machine Learning,Explain the kernel trick in SVM and why we use it and how to choose what kernel to use?
+Data Scientist,Technical,Machine Learning,Define the cross-validation process and the motivation behind using it?
+Data Scientist,Technical,Machine Learning,"You are building a binary classifier and you found that the data is imbalanced, what should you do to handle this situation?"
+Data Scientist,Technical,Machine Learning,"You are working on a clustering problem, what are different evaluation metrics that can be used, and how to choose between them?"
+Data Scientist,Technical,Machine Learning,What is the ROC curve and when should you use it?
+Data Scientist,Technical,Machine Learning,What is the difference between hard and soft voting classifiers in the context of ensemble learners?
+Data Scientist,Technical,Machine Learning,What is boosting in the context of ensemble learners discuss two famous boosting methods
+Data Scientist,Technical,Machine Learning,How can you evaluate the performance of a dimensionality reduction algorithm on your dataset?
+Data Scientist,Technical,Machine Learning,Define the curse of dimensionality and how to solve it.
+Data Scientist,Technical,Machine Learning,"In what cases would you use vanilla PCA, Incremental PCA, Randomized PCA, or Kernel PCA?"
+Data Scientist,Technical,Machine Learning,Discuss two clustering algorithms that can scale to large datasets
+Data Scientist,Technical,Machine Learning,Do you need to scale your data if you will be using the SVM classifier and discuss your answer
+Data Scientist,Technical,Machine Learning,What are Loss Functions and Cost Functions? Explain the key Difference Between them.
+Data Scientist,Technical,Machine Learning,What is the importance of batch in machine learning and explain some batch depend on gradient descent algorithm?
+Data Scientist,Technical,Machine Learning,What are the different methods to split a tree in a decision tree algorithm?
+Data Scientist,Technical,Machine Learning,Why boosting is a more stable algorithm as compared to other ensemble algorithms?
+Data Scientist,Technical,Machine Learning,What is active learning and discuss one strategy of it?
+Data Scientist,Technical,Machine Learning,What are the different approaches to implementing recommendation systems?
+Data Scientist,Technical,Machine Learning,What are the evaluation metrics that can be used for multi-label classification?
+Data Scientist,Technical,Machine Learning,What is the difference between concept and data drift and how to overcome each of them?
+Data Scientist,Technical,Machine Learning,"Can you explain the ARIMA model and its components?]()
+* [Q36: What are the assumptions made by the ARIMA model?]()
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Questions & Answers ##
+
+### Q1: Mention three ways to make your model robust to outliers. ###
+
+Investigating the outliers is always the first step in understanding how to treat them. After you understand the nature of why the outliers occurred you can apply one of the several methods mentioned [here"
+Data Scientist,Technical,Probability,"You and your friend are playing a game with a fair coin. The two of you will continue to toss the coin until the sequence HH or TH shows up. If HH shows up first, you win, and if TH shows up first your friend win. What is the probability of you winning the game?"
+Data Scientist,Technical,Probability,"If you roll a dice three times, what is the probability to get two consecutive threes?"
+Data Scientist,Technical,Probability,"Suppose you have ten fair dice. If you randomly throw them simultaneously, what is the probability that the sum of all of the top faces is divisible by six?"
+Data Scientist,Technical,Probability,"If you have three draws from a uniformly distributed random variable between 0 and 2, what is the probability that the median of three numbers is greater than 1.5?"
+Data Scientist,Technical,Probability,"Assume you have a deck of 100 cards with values ranging from 1 to 100 and you draw two cards randomly without replacement, what is the probability that the number of one of them is double the other?"
+Data Scientist,Technical,Probability,What is the difference between the Bernoulli and Binomial distribution?
+Data Scientist,Technical,Probability,"If there are 30 people in a room, what is the probability that everyone has different birthdays?"
+Data Scientist,Technical,Probability,"Assume two coins, one fair and the other is unfair. You pick one at random, flip it five times, and observe that it comes up as tails all five times. What is the probability that you are fliping the unfair coin?"
+Data Scientist,Technical,Probability,Assume you take a stick of length 1 and you break it uniformly at random into three parts. What is the probability that the three pieces can be used to form a triangle?
+Data Scientist,Technical,Probability,Say you draw a circle and choose two chords at random. What is the probability that those chords will intersect?
+Data Scientist,Technical,Probability,"Say you are given an unfair coin, with an unknown bias towards heads or tails. How can you generate fair odds using this coin?"
+Data Scientist,Technical,Probability,"According to hospital records, 75% of patients suffering from a disease die from that disease. Find out the probability that 4 out of the 6 randomly selected patients survive."
+Data Scientist,Technical,Probability,Discuss some methods you will use to estimate the Parameters of a Probability Distribution
+Data Scientist,Technical,Probability,"You have 40 cards in four colors, 10 reds, 10 greens, 10 blues, and ten yellows. Each color has a number from 1 to 10. When you pick two cards without replacement, what is the probability that the two cards are not in the same color and not in the same number?"
+Data Scientist,Technical,Probability,Can you explain the difference between frequentist and Bayesian probability approaches?
+Data Scientist,Technical,Probability,Explain the Difference Between Probability and Likelihood
+Data Scientist,Technical,Python,"Given two arrays, write a python function to return the intersection of the two? For example, X = [1,5,9,0] and Y = [3,0,2,9] it should return [9,0]"
+Data Scientist,Technical,Python,"Given an array, find all the duplicates in this array? For example: input: [1,2,3,1,3,6,5] output: [1,3]"
+Data Scientist,Technical,Python,"Given an integer array, return the maximum product of any three numbers in the array?"
+Data Scientist,Technical,Python,"Given an integer array, find the sum of the largest contiguous subarray within the array. For example, given the array A = [0,-1,-5,-2,3,14] it should return 17 because of [3,14]. Note that if all the elements are negative it should return zero."
+Data Scientist,Technical,Python,Define tuples and lists in Python What are the major differences between them?
+Data Scientist,Technical,Python,Compute the Euclidean Distance Between Two Series?
+Data Scientist,Technical,Python,"Given an integer n and an integer K, output a list of all of the combination of k numbers chosen from 1 to n. For example, if n=3 and k=2, return [1,2][1,3],[2,3]"
+Data Scientist,Technical,Python,Write a function to generate N samples from a normal distribution and plot them on the histogram
+Data Scientist,Technical,Python,What is the difference between apply and applymap function in pandas?
+Data Scientist,Technical,Python,"Given a string, return the first recurring character in it, or “None” if there is no recurring character. Example: input = ""pythoninterviewquestion"" , output = ""n"""
+Data Scientist,Technical,Python,"Given a positive integer X return an integer that is a factorial of X. If a negative integer is provided, return -1. Implement the solution by using a recursive function."
+Data Scientist,Technical,Python,"Given an m-by-n matrix with positive integers, determine the length of the longest path of increasing within the matrix. For example, consider the input matrix:"
+Data Scientist,Technical,Python,"What are some common ways to handle missing data in Python, and which method do you prefer and why?]()
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Questions & Answers: ##
+
+### Q1: Given two arrays, write a python function to return the intersection of the two? For example, X = [1,5,9,0] and Y = [3,0,2,9] it should return [9,0] ###
+
+Answer:
+```
+set(X).intersect (set(Y))
+```
+
+### Q2: Given an array, find all the duplicates in this array? For example: input: [1,2,3,1,3,6,5] output: [1,3] ###
+
+Answer:
+```
+set1=set()
+res=set()
+for i in list:
+  if i in set1:
+    res.add(i)
+  else:
+    set1.add(i)
+print(res)
+```
+
+
+### Q3: Given an integer array, return the maximum product of any three numbers in the array? ###
+
+Answer:
+
+```
+import heapq
+
+def max_three(arr):
+    a = heapq.nlargest(3, arr) # largerst 3 numbers for postive case
+    b = heapq.nsmallest(2, arr) # for negative case
+    return max(a[2]*a[1]*a[0], b[1]*b[0]*a[0])
+```
+
+### Q4: Given an integer array, find the sum of the largest contiguous subarray within the array. For example, given the array A = [0,-1,-5,-2,3,14] it should return 17 because of [3,14]. Note that if all the elements are negative it should return zero.
+
+```
+def max_subarray(arr):
+  n = len(arr)
+  max_sum = arr[0] #max
+  curr_sum = 0 
+  for i in range(n):
+    curr_sum += arr[i]
+    max_sum = max(max_sum, curr_sum)
+    if curr_sum <0:
+      curr_sum  = 0
+  return max_sum    
+      
+```
+
+### Q5: Define tuples and lists in Python What are the major differences between them? ###
+
+Answer:
+
+Lists:
+In Python, a list is created by placing elements inside square brackets [], separated by commas. A list can have any number of items and they may be of different types (integer, float, string, etc.). A list can also have another list as an item. This is called a nested list.
+
+1. Lists are mutable
+2. Lists are better for performing operations, such as insertion and deletion.
+3. Lists consume more memory
+4. Lists have several built-in methods
+
+
+Tuples:
+A tuple is a collection of objects which ordered and immutable. Tuples are sequences, just like lists. The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses, whereas lists use square brackets.
+
+1. Tuples are immutable
+2. Tuple data type is appropriate for accessing the elements
+3. Tuples consume less memory as compared to the list
+4. Tuple does not have many built-in methods.
+
+
+* Mutable = we can change, add, delete and modify stuff
+* Immutable = we cannot change, add, delete and modify stuff
+
+### Q6: Compute the Euclidean Distance Between Two Series? ###
+```
+```
+
+### Q7: Given an integer n and an integer K, output a list of all of the combination of k numbers chosen from 1 to n. For example, if n=3 and k=2, return [1,2],[1,3],[2,3] ### 
+
+Answer
+```
+from itertools import combinations
+def find_combintaion(k,n):
+    list_num = []
+    comb = combinations([x for x in range(1, n+1)],k)
+    for i in comb:
+        list_num.append(i)
+    print(""(K:{},n:{}):"".format(k,n))
+    print(list_num,""\n"")
+```
+
+### Q8: Write a function to generate N samples from a normal distribution and plot them on the histogram ###
+
+Answer:
+Using bultin Libraries:
+```
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.random.randn((N,))
+plt.hist(x)
+```
+From scratch: 
+![Alt_text"
+Data Scientist,Technical,SQL and DB,What are joins in SQL and discuss its types?
+Data Scientist,Technical,SQL and DB,"Define the primary, foreign, and unique keys and the differences between them?"
+Data Scientist,Technical,SQL and DB,What is the difference between BETWEEN and IN operators in SQL?
+Data Scientist,Technical,SQL and DB,Assume you have the given table below which contains information on user logins. Write a query to obtain the number of reactivated users (Users who did not log in the previous month and then logged in the current month)
+Data Scientist,Technical,SQL and DB,Describe the advantages and disadvantages of relational database vs NoSQL databases
+Data Scientist,Technical,SQL and DB,Assume you are given the table below on user transactions. Write a query to obtain the third transaction of every user
+Data Scientist,Technical,SQL and DB,What do you understand by Self Join? Explain using an example
+Data Scientist,Technical,SQL and DB,Write an SQL query to join 3 tables
+Data Scientist,Technical,SQL and DB,Write a SQL query to get the third-highest salary of an employee from employee_table and arrange them in descending order.
+Data Scientist,Technical,SQL and DB,What is the difference between temporary tables and common table expressions?
+Data Scientist,Technical,SQL and DB,Why use Right Join When Left Join can suffice the requirement?
+Data Scientist,Technical,SQL and DB,Why Rank skips sequence?
+Data Scientist,Technical,Statistics,Explain the central limit theorem and give examples of when you can use it in a real-world problem?
+Data Scientist,Technical,Statistics,Briefly explain the A/B testing and its application? What are some common pitfalls encountered in A/B testing?
+Data Scientist,Technical,Statistics,Describe briefly the hypothesis testing and p-value in layman’s term? And give a practical application for them ?
+Data Scientist,Technical,Statistics,"Given a left-skewed distribution that has a median of 60, what conclusions can we draw about the mean and the mode of the data?"
+Data Scientist,Technical,Statistics,What is the meaning of selection bias and how to avoid it?
+Data Scientist,Technical,Statistics,Explain the long-tailed distribution and provide three examples of relevant phenomena that have long tails. Why are they important in classification and regression problems?
+Data Scientist,Technical,Statistics,What is the meaning of KPI in statistics
+Data Scientist,Technical,Statistics,Say you flip a coin 10 times and observe only one head. What would be the null hypothesis and p-value for testing whether the coin is fair or not?
+Data Scientist,Technical,Statistics,"You are testing hundreds of hypotheses, each with a t-test. What considerations would you take into account when doing this?"
+Data Scientist,Technical,Statistics,What general conditions must be satisfied for the central limit theorem to hold?
+Data Scientist,Technical,Statistics,What is skewness discuss two methods to measure it?
+Data Scientist,Technical,Statistics,"You sample from a uniform distribution [0, d] n times. What is your best estimate of d?"
+Data Scientist,Technical,Statistics,"Discuss the Chi-square, ANOVA, and t-test"
+Data Scientist,Technical,Statistics,Say you have two subsets of a dataset for which you know their means and standard deviations. How do you calculate the blended mean and standard deviation of the total dataset? Can you extend it to K subsets?
+Data Scientist,Technical,Statistics,What is the relationship between the significance level and the confidence level in Statistics?
+Data Scientist,Technical,Statistics,What is the Law of Large Numbers in statistics and how it can be used in data science ?
+Data Scientist,Technical,Statistics,"What is the difference between a confidence interval and a prediction interval, and how do you calculate them?"
