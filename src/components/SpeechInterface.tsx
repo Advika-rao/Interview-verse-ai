@@ -231,9 +231,11 @@ export const SpeechInterface: React.FC<SpeechInterfaceProps> = ({
     };
   }, [onTranscriptChange]);
 
-  const toggleListening = () => {
-    if (isAiSpeaking && typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+  const toggleListening = async () => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {}
       onAiSpeakingChange(false);
     }
 
@@ -257,14 +259,20 @@ export const SpeechInterface: React.FC<SpeechInterfaceProps> = ({
       speechStartTimeRef.current = performance.now();
       finalDurationRef.current = 0;
       setUsedMic(true);
-      startAudioAnalysis();
+      setIsListening(true);
+
+      try {
+        await startAudioAnalysis();
+      } catch (e) {
+        console.warn('Audio analysis start caught:', e);
+      }
+
       if (recognitionRef.current) {
         try {
           recognitionRef.current.start();
-          setIsListening(true);
         } catch (e) {
           console.warn('Recognition start caught:', e);
-          setIsListening(true);
+          // Already running or non-fatal
         }
       }
     }
@@ -370,7 +378,7 @@ export const SpeechInterface: React.FC<SpeechInterfaceProps> = ({
       };
     }
 
-    onAnswerSubmit(cleanTranscript, mode, measuredSeconds, metrics);
+    onAnswerSubmit(cleanTranscript || '[No response provided / Candidate passed]', mode, measuredSeconds, metrics);
   };
 
 
@@ -403,8 +411,15 @@ export const SpeechInterface: React.FC<SpeechInterfaceProps> = ({
 
           <button
             type="button"
-            onClick={() => onReplayVoice?.()}
-            disabled={isAiSpeaking}
+            onClick={() => {
+              if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+                try {
+                  window.speechSynthesis.cancel();
+                } catch (e) {}
+              }
+              onAiSpeakingChange(false);
+              onReplayVoice?.();
+            }}
             className="flex items-center gap-1.5 px-3 py-2 rounded-full border border-[#394b86] text-xs font-medium text-[#b8c5e6] hover:text-white hover:border-[#55b9ff] transition cursor-pointer bg-[#142951]/60"
             title="Listen to question again"
           >
@@ -431,7 +446,7 @@ export const SpeechInterface: React.FC<SpeechInterfaceProps> = ({
             </span>
           ) : isAiSpeaking ? (
             <span className="text-[#a66bff] font-medium flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5" /> AI Interviewer asking question...
+              <Sparkles className="w-3.5 h-3.5" /> AI Interviewer speaking...
             </span>
           ) : (
             <span className="text-[#9eacd0]">Click &ldquo;Answer Verbally&rdquo; or type below</span>
@@ -477,23 +492,36 @@ export const SpeechInterface: React.FC<SpeechInterfaceProps> = ({
             <span>{transcript ? `${transcript.trim().split(/\s+/).filter(Boolean).length} words` : '0 words'}</span>
           </div>
 
-          <button
-            onClick={handleSubmit}
-            disabled={!transcript.trim() || isEvaluating}
-            className="btn-gradient flex items-center gap-2 px-6 py-2.5 rounded-full text-white text-sm font-bold cursor-pointer"
-          >
-            {isEvaluating ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Evaluating...</span>
-              </>
-            ) : (
-              <>
-                <span>Submit Response</span>
-                <Send className="w-4 h-4" />
-              </>
+          <div className="flex items-center gap-2">
+            {!transcript.trim() && !isEvaluating && (
+              <button
+                type="button"
+                onClick={() => onAnswerSubmit('[No response provided / Candidate passed]', usedMic ? 'spoken' : 'typed', 0, undefined)}
+                className="text-xs text-[#9eacd0] hover:text-amber-300 transition underline cursor-pointer px-2 py-1"
+                title="Submit with zero marks and view reference answer"
+              >
+                Pass Question (0 pts)
+              </button>
             )}
-          </button>
+
+            <button
+              onClick={handleSubmit}
+              disabled={isEvaluating}
+              className="btn-gradient flex items-center gap-2 px-6 py-2.5 rounded-full text-white text-sm font-bold cursor-pointer"
+            >
+              {isEvaluating ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <span>Evaluating...</span>
+                </>
+              ) : (
+                <>
+                  <span>{transcript.trim() ? 'Submit Response' : 'Submit Response'}</span>
+                  <Send className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>
